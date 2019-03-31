@@ -1,0 +1,75 @@
+/*
+ * 链表结构
+ */
+// 数据结点类型
+class DATA{
+	String key;
+	String name;
+	int age;
+}
+// 定义链表结构
+class CLType{
+	DATA nodeData = new DATA();
+	CLType nextNode;
+	/**
+	 * 在链表末尾追加结点
+	 * 分配内存存储新增结点;将此结点的地址部分设为null;
+	 * 从head开始查找，将原表的表尾结点地址设为此新增结点地址
+	 * @param head	链表头
+	 * @param nodeData	追加的结点
+	 * @return	追加后的链表头，如果失败返回空指针
+	 */
+	@SuppressWarnings("unused")
+	CLType CLAddEnd(CLType head,DATA nodeData) {
+		CLType htemp;
+		CLType node= new CLType();
+		if(node == null) {	//申请内存
+			System.out.println("申请内在失败");
+			return null;
+		}else {
+			node.nodeData = nodeData;	//保存数据
+			node.nextNode = null;		//可以将这两个属性放在DATA中？？
+			if(head == null) {
+				head = node;
+				return head;
+			}else {
+				htemp = head;
+				while (htemp.nextNode != null) {		//查找表尾
+					htemp = htemp.nextNode;
+				}
+				htemp.nextNode = node;
+				return head;
+			}
+			
+		}
+	}
+	/**
+	 * 在链表开头添加结点
+	 * 分配内存存储新增结点;将此结点的地址部分指向原head;
+	 * 改变原head的引用地址
+	 * @param head	链表头
+	 * @param nodeData	追加的结点
+	 * @return	添加后的链表头，如果失败返回空指针
+	 */
+	@SuppressWarnings("unused")
+	CLType CLAddStart(CLType head,DATA nodeData) {
+		CLType node= new CLType();
+		if(node == null) {	//申请内存
+			System.out.println("申请内在失败");
+			return null;
+		}else {
+			node.nodeData = nodeData;
+			node.nextNode = head;
+			head = node;		//head传入的是引用，其指向可以改变
+			return head;		//不能直接返回node，需要将传入的head指向新的头引用
+		}
+	}
+}
+public class ChainList {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

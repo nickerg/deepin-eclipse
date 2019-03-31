@@ -1,0 +1,18 @@
+
+public class InsertionSort {
+/**
+ * 实现插入排序
+ * @param args
+ */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * 通过类来实现
+	 */
+	public class InsertionSort {
+		
+	}
+
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+/**
+ * 字符移动 将字符串中的字符“*”移到字符串的前部，前面的非"*"字符后移
+ * 不改变非"*"字符的先后顺序
+ * 返回串中字符“*"的数量
+ * @author dnd
+ *
+ */
+public class MoveStr {
+
+	public static void main(String[] args) {
+		System.out.println("输入字符串");
+		Scanner scanner = new Scanner(System.in);
+		String str = scanner.next();
+		System.out.println("移动前的字符串为："+str);
+		char[] ch = str.toCharArray();
+		int sum = beginMove(ch);
+		System.out.println("移动后的字符串为："+ch.toString());
+		
+	}
+
+}

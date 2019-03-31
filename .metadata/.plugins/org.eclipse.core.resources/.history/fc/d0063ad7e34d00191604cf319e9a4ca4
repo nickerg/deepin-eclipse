@@ -1,0 +1,20 @@
+package www.walk.NextData;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateFormat {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Date now = new Date();
+		System.out.println(date2FormatStr(now));
+		
+	}
+	public static String date2FormatStr(Date date) {
+		SimpleDateFormat sDateFormat = new SimpleDateFormat("y-M-d H:m:s");
+		String string = sDateFormat.format(date);
+		return string;
+	}
+
+}

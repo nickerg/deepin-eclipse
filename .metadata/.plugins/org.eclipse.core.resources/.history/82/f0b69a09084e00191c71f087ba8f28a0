@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class InsertionSort {
+/**
+ * 实现插入排序
+ * @param args
+ */
+	public static void main(String[] args) {
+		System.out.println("hello");
+		InsertionSort iSort = new InsertionSort(10, 100);
+	}
+	
+	ArrayList<Integer> list;
+	/**
+	 * 产生一个序列
+	 * @param num	数据的个数
+	 * @param mod	产生随机数的范围在1～mod之间
+	 */
+	public InsertionSort(int num, int mod) {
+		list = new ArrayList<Integer>(num);
+		Random random = new Random();
+		System.out.println("排序之前的数组为：");
+		System.out.println(list.size());
+		for (int i = 0; i < num i++) {
+			list.add(random.nextInt() % mod + 1);	//自动装箱
+			System.out.println("list[" + i + "]=" + list.get(i));
+			
+		}
+	}
+	
+
+}
