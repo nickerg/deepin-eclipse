@@ -18,7 +18,6 @@
 <fullyQualifiedTypeName name="CLType"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="CBTType"/>
 <fullyQualifiedTypeName name="javax.swing.text.StyledEditorKit.ForegroundAction"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.PRIVATE_MEMBER"/>
@@ -29,4 +28,7 @@
 <fullyQualifiedTypeName name="java.lang.Character"/>
 <fullyQualifiedTypeName name="basic.LeapYear"/>
 <fullyQualifiedTypeName name="java.util.concurrent.CountDownLatch"/>
+<fullyQualifiedTypeName name="javax.security.auth.x500.X500Principal"/>
+<fullyQualifiedTypeName name="Solution"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>
