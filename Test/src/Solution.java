@@ -167,6 +167,20 @@ public class Solution {
 	     }else
 	    	 return 0;
     }
+//	判断一个整数是否是回文数
+//	没有考虑反转后溢出
+	public boolean isPalindrome(int x) {
+        int y=0,m = x;
+        while(x > 0){   // -121 不是回文数，所以负数肯定不是
+            y = y * 10 + x % 10;
+            x /= 10;
+        }
+        if(m == y){
+            return true;
+        }
+        return false;
+    }
+	
 	
 
 }
