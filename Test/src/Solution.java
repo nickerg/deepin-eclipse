@@ -132,4 +132,39 @@ public class Solution {
 		}
     	return rev;
     }
+//    字符串转换整数
+	public int myAtoi(String str) {
+        if(str.length() == 0) return 0;
+	     int i = 0;
+	     long rev = 0;
+	     int com = 0;
+	     while(str.charAt(i)==' '){
+              if(i+1 < str.length()) {
+                 i++;
+             }else return 0; 
+         }
+	     int j=i;
+        if(str.charAt(i) == '-' || str.charAt(i) == '+'){
+           com=1;
+           j++;
+        }
+	     while(j<str.length() &&str.charAt(j)>='0' && str.charAt(j) <= '9' ) {
+	    	 j++;
+	     }
+	     if(j - i >com) {
+	    	 try {
+				rev = Integer.parseInt(str.substring(i, j));
+                 return (int)rev;
+			} catch (NumberFormatException e) {
+				if(str.charAt(i) == '-') {
+					return Integer.MIN_VALUE;
+				}else {
+					return Integer.MAX_VALUE;
+				}
+			}
+	     }else
+	    	 return 0;
+    }
+	
+
 }

@@ -12,5 +12,6 @@ public class Test {
 //		System.out.println(out);
 
 		System.out.println(Integer.MAX_VALUE);
+		System.out.println(solution.myAtoi("+1"));
 	}
 }
