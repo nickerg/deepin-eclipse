@@ -134,29 +134,31 @@ public class Solution {
     }
 //    字符串转换整数
 	public int myAtoi(String str) {
-        if(str.length() == 0) return 0;
-	     int i = 0;
+		str = str.trim();		//去除空格
+        if(str.isEmpty()) return 0;//为空当即返回
+	     int j=0;
 	     long rev = 0;
 	     int com = 0;
-	     while(str.charAt(i)==' '){
-              if(i+1 < str.length()) {
-                 i++;
-             }else return 0; 
-         }
-	     int j=i;
-        if(str.charAt(i) == '-' || str.charAt(i) == '+'){
+//	     while(str.charAt(i)==' '){		// 去除字符串之前的空格 可以用trim
+//              if(i+1 < str.length()) {
+//                 i++;
+//             }else return 0; 
+//         }
+//	     int j=i;
+	    //判断第一个是否为符号位
+        if(str.charAt(j) == '-' || str.charAt(j) == '+'){
            com=1;
            j++;
         }
 	     while(j<str.length() &&str.charAt(j)>='0' && str.charAt(j) <= '9' ) {
 	    	 j++;
 	     }
-	     if(j - i >com) {
+	     if(j >com) {
 	    	 try {
-				rev = Integer.parseInt(str.substring(i, j));
+				rev = Integer.parseInt(str.substring(0, j));
                  return (int)rev;
 			} catch (NumberFormatException e) {
-				if(str.charAt(i) == '-') {
+				if(str.charAt(0) == '-') {
 					return Integer.MIN_VALUE;
 				}else {
 					return Integer.MAX_VALUE;
