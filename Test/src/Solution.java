@@ -168,14 +168,16 @@ public class Solution {
 	    	 return 0;
     }
 //	判断一个整数是否是回文数
-//	没有考虑反转后溢出
+//	反转一半数字。如果x小于反转后的数字，说明完成了一半。如果不相等，就不是回文数
 	public boolean isPalindrome(int x) {
-        int y=0,m = x;
-        while(x > 0){   // -121 不是回文数，所以负数肯定不是
+        int y=0;
+        if(x < 0 || (x % 10 == 0 && x != 0))    //如果尾数是0，刚该数只有0满足条件，否则false。-121 不是回文数，所以负数肯定不是
+            return false;
+        while(x > y){   // 判断是否反转了一半
             y = y * 10 + x % 10;
             x /= 10;
         }
-        if(m == y){
+        if(x == y || x == y/10){	//如果是奇数，去除反转后的中间一位。
             return true;
         }
         return false;
