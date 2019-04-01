@@ -182,7 +182,21 @@ public class Solution {
         }
         return false;
     }
-	
+//	求盛最多水的容器	采用缩进法，两边谁的高度小谁缩进。
+	public int maxArea(int[] height) {
+        int left = 0,right = height.length-1;
+        int maxArea =0;
+        while(left < right) {
+        	if(height[left] < height[right]) {
+        		maxArea = Math.max(maxArea, height[left] * (right-left));
+        		left++;
+        	}else {
+        		maxArea = Math.max(maxArea, height[right] * (right-left));
+        		right--;
+        	}
+        }
+        return maxArea;
+    }
 	
 
 }
