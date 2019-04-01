@@ -72,18 +72,21 @@ public class Solution {
     //z字形变换
     //需考虑 输入为1行，除数为0
     public String convert(String s, int numRows) {
+
         int len = s.length();
         int her = len;
-        String out = "";
+        StringBuilder out = new StringBuilder();
         char a[][] = new char[numRows][her];
         int i=0,j=0,k=0;
         if(numRows > 1) {
-        	her = numRows*len/(2*numRows-2);	// 一个块存numRows + numRows -2数，len 需要x个块存，每个块是numRows列
-        	for (int k2 = 0; k2 < a.length; k2++) {
-        		for (int l = 0; l < a[0].length; l++) {
-        			a[k2][l] = ' ';
-        		}
-        	}
+        	her = (int)(numRows*len/(float)(2*numRows-2));	// 一个块存numRows + numRows -2数，len 需要x个块存，每个块是numRows列
+//        	System.out.println(her);
+//        	为了判断字符数组不为空
+//        	for (int k2 = 0; k2 < a.length; k2++) {
+//        		for (int l = 0; l < a[0].length; l++) {
+//        			a[k2][l] = ' ';
+//        		}
+//        	}
         	while(k < len){
         		if(j % (numRows-1) == 0 || (i+j)%(numRows -1) == 0){
         			a[i][j] = s.charAt(k++);    
@@ -102,15 +105,31 @@ public class Solution {
 //        	System.out.println(a.length + "\t" + a[0].length);
         	for (int k2 = 0; k2 < a.length; k2++) {
         		for (int l = 0; l < a[0].length; l++) {
-        			if(a[k2][l] != ' ') {
-        				out += a[k2][l];
+        			if(a[k2][l] != '\0') {
+        				out.append(a[k2][l]);
         			}
         		}
         	}
         }else {
-			out = s;
+//			return s;
+        	out.append(s);
 		}
-        return out;
+        return out.toString();
     }
-
+//  有符号整数反转，在int范围之内
+    public int reverse(int x) {
+    	int rev = 0;
+    	while (x != 0) {
+            if(rev * 10 / 10 != rev){	// 判断溢出
+                return 0;
+            }
+			rev = rev * 10 + x % 10;
+// 			if(rev == Integer.MAX_VALUE || rev == Integer.MIN_VALUE) {
+// //				rev = 0;
+// 				return 0;
+// 			}
+			x/=10;
+		}
+    	return rev;
+    }
 }
