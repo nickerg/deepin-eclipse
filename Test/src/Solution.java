@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
 	
 	//找到最长回文子串
@@ -196,7 +199,73 @@ public class Solution {
         }
         return maxArea;
     }
-
+//	整数转罗马数字
+	public String intToRoman(int num) {
+		String sNum = String.valueOf(num);	// 将数字转换为字符串
+		StringBuilder sBuilder = new StringBuilder("");	
+		sBuilder.append(sNum);
+		StringBuilder res = new StringBuilder();
+		while(sBuilder.length() < 4) {//确保占位4个字节 在这个方法中，很重要
+			sBuilder.insert(0, 0);
+		}
+//		int count = 4;
+//		int[] key = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+		String[][] value = {
+				{"  ", " ", "  ", "M"},
+				{"CM", "D", "CD", "C"}, 
+				{"XC", "L", "XL", "X"},
+				{"IX", "V", "IV", "I"}}; 
+		for (int i = 0; i < 4; i++) {
+			if(sBuilder.charAt(i) == '9') {
+				res.append(value[i][0]);
+			}
+			if(sBuilder.charAt(i) == '5') {
+				res.append(value[i][1]);
+			}
+			if(sBuilder.charAt(i) == '4') {
+				res.append(value[i][2]);
+			}
+			if((sBuilder.charAt(i) > '5' && sBuilder.charAt(i) < '9') || (sBuilder.charAt(i) > '0' && sBuilder.charAt(i) < '4')) {
+				if(sBuilder.charAt(i) > '5' && sBuilder.charAt(i) < '9') {
+					res.append(value[i][1]);
+				}
+				for (int j = 0; j < (Integer.parseInt(sBuilder.charAt(i) + "") % 5); j++) {
+					res.append(value[i][3]);
+				}
+			}
+		}
+		return res.toString();
+    }
+//	罗马数字变整数	来自评论区 先加后减
+	public int romanToInt(String s) {
+		int n = s.length();
+		int roman_int = 0;
+		for(int i=0;i<n;i++)
+		{
+			switch(s.charAt(i)) 
+			{
+			case 'I' : roman_int = roman_int + 1;break;
+			case 'V' : roman_int = roman_int + 5;break;
+			case 'X' : roman_int = roman_int + 10;break;
+			case 'L' : roman_int = roman_int + 50;break;
+			case 'C' : roman_int = roman_int + 100;break;
+			case 'D' : roman_int = roman_int + 500;break;
+			case 'M' : roman_int = roman_int + 1000;break;
+			default: System.out.println("default");break;
+			}
+	
+			if(i!=0)
+			{	// 非第一个的时候判断 由于是先加，所以应该减两次基值 900 +100+1000-100*2
+				if(((s.charAt(i)=='V')||(s.charAt(i)=='X'))&&(s.charAt(i-1)=='I')) 
+					roman_int = roman_int-1*2;
+				if(((s.charAt(i)=='L')||(s.charAt(i)=='C'))&&(s.charAt(i-1)=='X'))
+					roman_int = roman_int-10*2;
+				if(((s.charAt(i)=='D')||(s.charAt(i)=='M'))&&(s.charAt(i-1)=='C'))
+					roman_int = roman_int-100*2;
+			}
+		}
+		return roman_int;	
+	}
 	
 	
 

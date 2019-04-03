@@ -11,7 +11,11 @@ public class Test {
 //		out = solution.convert("PAYPALISHIRING", 3);
 //		System.out.println(out);
 
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(solution.myAtoi("+1"));
+//		System.out.println(Integer.MAX_VALUE);
+//		System.out.println(solution.myAtoi("+1"));
+//		System.out.println(String.valueOf(202));
+		
+		System.out.println(solution.intToRoman(1994));
+		System.out.println(solution.romanToInt("MCMXCIV"));
 	}
 }
