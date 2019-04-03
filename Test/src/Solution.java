@@ -291,7 +291,18 @@ public class Solution {
 		}
 		return res.toString();
     }
-	
+//	上述方法的一种简单实现。也是一个个比较，同时如果越界或不相等就退出
+	public String longestCommonPrefix1(String[] strs) {
+	    if (strs == null || strs.length == 0) return "";
+	    for (int i = 0; i < strs[0].length() ; i++){
+	        char c = strs[0].charAt(i);
+	        for (int j = 1; j < strs.length; j ++) {
+	            if (i == strs[j].length() || strs[j].charAt(i) != c)
+	                return strs[0].substring(0, i);             
+	        }
+	    }
+	    return strs[0];
+	}
 	
 
 }
