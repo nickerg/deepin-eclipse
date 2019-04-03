@@ -354,5 +354,57 @@ public class Solution {
         }
         return res;
     }
-
+//	删除链表的倒数第n个节点，保证输入的n是有效的 ，未考虑链表为空的情况
+	/**
+	 * Definition for singly-linked list.
+	 * public class ListNode {
+	 *     int val;
+	 *     ListNode next;
+	 *     ListNode(int x) { val = x; }
+	 * }
+	 */
+	public class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; }
+	}
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+    	ListNode root = head;
+    	int count = 1;
+    	while(root.next != null) {	//找到链表的总数
+    		count++;
+    		root = root.next;
+    	}
+    	root = head;
+    	if(count == n)	return head.next;	//如果删除第一个，直接返回 未使用哑结点
+    	while(count - n > 1) {	//找前一个节点
+    		count--;
+    		root =root.next;
+    	}	//此时定位到了预删除节点的前一个
+//    	ListNode temp = root.next;
+    	root.next = root.next.next;
+//    	temp = null;
+    	return head;
+    }
+//	参考答案，给一个固定间隔，可以只遍历一次，且使用哑结点
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode first = dummy;
+        ListNode second = dummy;
+        // Advances first pointer so that the gap between first and second is n nodes apart
+        for (int i = 1; i <= n + 1; i++) {
+            first = first.next;
+        }
+        // Move first to the end, maintaining the gap
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
+        return dummy.next;
+    }
+	
+	
+	
 }
