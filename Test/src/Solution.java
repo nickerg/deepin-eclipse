@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Solution {
 	
@@ -303,6 +302,57 @@ public class Solution {
 	    }
 	    return strs[0];
 	}
-	
+//	三数之和
+//	public List<List<Integer>> threeSum(int[] nums) {
+//		List<List<Integer>> res = new ArrayList<>();
+//		int temp = 0;
+//		int j = 0;
+////		for (int i = 0; i < nums.length; i++) {
+////			System.out.print(nums[i]+" ");
+////		}
+//		// 插入法排序
+//		for (int i = 1; i < nums.length; i++) {
+//			temp = nums[i];
+//			j = i;
+//			while(j > 0 && temp < nums[j-1]) {
+//				nums[j] = nums[j-1];
+//				j--;
+//			}
+//			nums[j] = temp;
+//		}
+////		System.out.println();
+////		for (int i = 0; i < nums.length; i++) {
+////			System.out.print(nums[i]+" ");
+////		}
+//		return res;
+//    }
+	// 找出数组中最接近目标数的三个数之和
+	public int threeSumClosest(int[] nums, int target) {
+		if(nums.length < 3) return 0;
+		Arrays.sort(nums);;  // 排序
+		int sum = nums[0]+nums[1]+nums[2];
+		int res = sum;
+		int i=0,j=1,k=0;
+		int min = Math.abs(nums[0]+nums[1]+nums[2]-target);
+        for(i = 0;i<nums.length-2;i++) {		//遍历
+        	j = i + 1;
+        	k = nums.length -1;
+        	while(j < k) {
+        		sum = nums[i]+nums[j]+nums[k];
+        		if(Math.abs(sum -target) < min) {
+        			min = Math.abs(sum - target);
+        			res = sum;
+        		}
+        		if(sum < target) {
+        			j++;
+        		}else if(sum > target) {
+        			k--;
+        		}else {//相等
+        			return sum;	//即target
+        		}
+        	}
+        }
+        return res;
+    }
 
 }

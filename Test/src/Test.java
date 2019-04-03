@@ -1,4 +1,3 @@
-
 public class Test {
 	
 	public static void main(String[] args) {
@@ -18,6 +17,9 @@ public class Test {
 //		System.out.println(solution.intToRoman(1994));
 //		System.out.println(solution.romanToInt("MCMXCIV"));
 		
-		System.out.println(solution.longestCommonPrefix(new String[] {"flower","flow","flight"}));
+//		System.out.println(solution.longestCommonPrefix(new String[] {"flower","flow","flight"}));
+		
+//		Arrays.sort(a);
+		
 	}
 }
