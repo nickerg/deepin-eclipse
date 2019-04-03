@@ -15,7 +15,9 @@ public class Test {
 //		System.out.println(solution.myAtoi("+1"));
 //		System.out.println(String.valueOf(202));
 		
-		System.out.println(solution.intToRoman(1994));
-		System.out.println(solution.romanToInt("MCMXCIV"));
+//		System.out.println(solution.intToRoman(1994));
+//		System.out.println(solution.romanToInt("MCMXCIV"));
+		
+		System.out.println(solution.longestCommonPrefix(new String[] {"flower","flow","flight"}));
 	}
 }

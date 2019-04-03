@@ -266,6 +266,31 @@ public class Solution {
 		}
 		return roman_int;	
 	}
+//	最长公共前缀
+	public String longestCommonPrefix(String[] strs) {
+		if(strs.length == 0) return "";		// 注意输入为空的时候
+		StringBuilder res = new StringBuilder();
+		int minLen = strs[0].length();
+		for (int i = 1; i < strs.length; i++) {		// 数组的长度没有括号
+			minLen = Math.min(minLen, strs[i].length());
+		}
+		boolean label = true;
+		for(int i=0; i < minLen; i++) {		//查询 最小字符串长度次
+			for (int j = 1; j < strs.length; j++) {		// 每次都依次判断每个是否相同
+				if(strs[0].charAt(i) == strs[j].charAt(i)) {
+					continue;
+				}
+				label = false;
+				break;
+			}
+			if(label) {
+				res.append(strs[0].charAt(i));	// 如果第一个和之后的每个都相同，则添加 否则跳出循环
+				continue;
+			}
+			break;
+		}
+		return res.toString();
+    }
 	
 	
 
