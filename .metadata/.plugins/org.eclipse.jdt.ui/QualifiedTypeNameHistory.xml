@@ -40,5 +40,8 @@
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="ListNodeN"/>
+<fullyQualifiedTypeName name="org.w3c.dom.ls.LSException"/>
 <fullyQualifiedTypeName name="Solution.ListNode"/>
+<fullyQualifiedTypeName name="javax.management.ListenerNotFoundException"/>
+<fullyQualifiedTypeName name="ListNode"/>
 </qualifiedTypeNameHistroy>

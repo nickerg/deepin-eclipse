@@ -469,7 +469,60 @@ public class Solution {
     	}
     	return res.next;
     }
-    
+//    删除排序数组中的重复项
+	public int removeDuplicates(int[] nums) {
+		int count = 0;
+		int j = 0;
+		for (int i = 0; i < nums.length-1; i++) {
+//			j = j+1;
+			while(j<nums.length && nums[j] <= nums[i]) {	// 在不超出边界的情况下，找下一个比该数大的值
+				j++;
+//				count--;
+			}
+			if(j < nums.length)		// 如果没有超出边界，则进行赋值
+				nums[i+1] = nums[j];
+		}
+		for (int i = 0; i < nums.length-1; i++) {	// 如果当前值大于后一个值，则说明已经去重完成 等于不好判断，所以直接返回的时候加一即可
+			if(nums[i] < nums[i+1]) {
+				count++;
+				continue;
+			}
+			break;
+		}
+		return count+1;
+//		switch (nums.length) {
+//		case 0:
+//			return 0;
+//		case 1:
+//			return 1;
+//		case 2:
+//			if(nums[0] == nums[1]) {
+//				return 1;
+//			}else {
+//				return 2;
+//			}
+//		default:
+//			break;
+//		}
+//		int j = 0;
+//		int count = nums.length;
+//        for (int i = 0; i < nums.length-1; i++) {
+//        	j = i+1;
+//			while(j < nums.length && nums[j] == nums[i]) {
+//				nums[j++] = nums[0]-1;	// 这是一个确保不会重合的数
+////				j++;
+//			}
+//        }
+//        for (int k = 1; k < nums.length-1; k++) {
+//        	if(nums[k] == nums[0]-1) {
+//        		for (int k2 = k; k2 < nums.length-1; k2++) {
+//        			nums[k2] = nums[k2 + 1];
+//        		}
+//        		count--;
+//        	}
+//        }
+//        return count;
+}
     
     
 }
