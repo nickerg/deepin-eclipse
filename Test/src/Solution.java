@@ -1,4 +1,17 @@
 import java.util.Arrays;
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class ListNode {
+	int val;
+	ListNode next;
+	ListNode(int x) { val = x; }
+}
 
 public class Solution {
 	
@@ -355,19 +368,7 @@ public class Solution {
         return res;
     }
 //	删除链表的倒数第n个节点，保证输入的n是有效的 ，未考虑链表为空的情况
-	/**
-	 * Definition for singly-linked list.
-	 * public class ListNode {
-	 *     int val;
-	 *     ListNode next;
-	 *     ListNode(int x) { val = x; }
-	 * }
-	 */
-	public class ListNode {
-		int val;
-		ListNode next;
-		ListNode(int x) { val = x; }
-	}
+	
     public ListNode removeNthFromEnd(ListNode head, int n) {
     	ListNode root = head;
     	int count = 1;
@@ -452,7 +453,22 @@ public class Solution {
      }
      return res;
  }
-	
+//	两两交换链表中的节点		一定要注意，操作的是引用，可能导致节点丢失
+    public ListNode swapPairs(ListNode head) {
+    	if(head == null || head.next == null) {
+    		return head;
+    	}
+    	ListNode temp = new ListNode(0);	// 为哑节点
+    	ListNode res = temp;
+    	while(head != null && head.next!= null) {	// 当节点不为空	A B C
+    			temp.next = head.next;		// 将节点指向B
+    			head.next = head.next.next;		//将C的引用保存到A.next中
+    			temp.next.next = head;		//即此时的B.next 指向A
+    			temp = temp.next.next;		//将temp向右移动两位，为下次准备
+    			head = head.next;			//由于此时A.next 指向C,原head中已经丢失B，所以移动一次即可
+    	}
+    	return res.next;
+    }
     
     
     

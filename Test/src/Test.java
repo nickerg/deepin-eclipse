@@ -20,6 +20,10 @@ public class Test {
 //		System.out.println(solution.longestCommonPrefix(new String[] {"flower","flow","flight"}));
 		
 //		Arrays.sort(a);
-		
+		ListNode a = new ListNode(1);
+		a.next = new ListNode(2);
+		a.next.next = new ListNode(3);
+		a.next.next.next = new ListNode(4);
+		solution.swapPairs(a);
 	}
 }
