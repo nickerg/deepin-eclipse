@@ -566,7 +566,26 @@ public class Solution {
         }
         return count;
     }
-	
+//	实现strStr方法，如果needle为空，则返回0.未找到返回-1
+	public int strStr(String haystack, String needle) {
+		int len = needle.length();
+		if(len == 0) {
+			return 0;
+		}
+		int j = 0;
+		for (int i = 0; i <= haystack.length()-needle.length(); i++) {		// 遍历所有haystack字符 '='是因为如果两者相同，需要至少循环一次
+			if( haystack.charAt(i) == needle.charAt(0)) {	// 如果首字母相同，进行后续判断
+				j = 0;
+				while(j < len && haystack.charAt(j + i) == needle.charAt(j)) {	// 从第一个字母开始判断，直到最后一个字母
+					j++;
+				}
+				if(j == len) {	//如果相当，说明所有的needle字符都满足上述判断，返回此时在haystack中的位置
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 	
     
 }
