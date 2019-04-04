@@ -586,6 +586,44 @@ public class Solution {
 		}
 		return -1;
 	}
+//	下一个排列 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
+//	如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）
+	public void nextPermutation(int[] nums) {
+        for(int i = nums.length-1; i > 0; i--) {	// 次如果没有交换，说明此时已经是最大
+        	if(nums[i-1] < nums[i]) {
+        		int j = nums.length-1;
+        		while(nums[j--] <= nums[i-1]);	// 找到一个比要交换的数大于的数， 然后将剩下的数倒序 4 6 5 5 3 ，5 6 5 4 3, 5 3 4 5 6 
+        		
+        		int temp = nums[++j];		// while循环中多减了一次
+        		nums[j] = nums[i-1];
+        		nums[i-1] = temp; 
+//        		for(j = 0; j<(nums.length-i)/2;j++) {	 //对后面的数组倒序
+//           			temp = nums[j+i];
+//                   	nums[j+i] = nums[nums.length-1-j];
+//                   	nums[nums.length-1-j] = temp;
+//           		}
+        		int k = nums.length-1;	//另一种倒序
+        		j = i;
+        		while(j < k) {
+        			temp = nums[j];
+        			nums[j] = nums[k];
+        			nums[k] = temp;
+        			j++;
+        			k--;
+        		}
+        		return;
+        	}
+        }	
+//       已经是最大，需要将nums进行倒序
+        int temp;
+        for(int i = 0; i < nums.length/2; i++) {
+        	temp = nums[i];
+        	nums[i] = nums[nums.length-1-i];
+        	nums[nums.length-1-i] = temp;
+        }
+        return;
+    }
+	
 	
     
 }
