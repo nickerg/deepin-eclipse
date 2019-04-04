@@ -404,7 +404,56 @@ public class Solution {
         second.next = second.next.next;
         return dummy.next;
     }
+//	合并两个有序链表	改变了原有链表，新创建了一个链表存储数据
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode temp = new ListNode(0);		//哑节点
+        ListNode res = temp;		//保存头节点。
+        if(l1 == null) {	//	某个链表为空，返回另一个
+        	return l2;
+        }else if(l2 == null) {
+        	return l1;
+        }else {
+//        	temp.next = l1;
+        	while(true) {
+        		if(l1.val < l2.val) {
+        			temp.next = l1;
+        			temp = temp.next;
+        			l1 = l1.next;
+        		}else {
+        			temp.next = l2;
+        			temp = temp.next;
+        			l2 = l2.next;
+        		}
+        		if(l1 == null) {
+        			temp.next = l2;
+        			return res.next;
+        		}else if(l2 == null) {
+        			temp.next = l1;
+        			return res.next;
+        		}
+        	}
+        }
+        
+    }
+//  合并 k 个排序链表
+    public ListNode mergeKLists(ListNode[] lists) {
+//      采用递归的思想
+     if(lists.length == 0){
+         return null;
+     }
+     if(lists.length == 1){
+         return lists[0];
+     }
+     ListNode res = mergeTwoLists(lists[0],lists[1]);
+     // ListNode temp = res;
+     for(int i = 2; i< lists.length; i++){
+         // temp.next = mergeTwolists(mergeTwolists(),lists[])
+         res = mergeTwoLists(res,lists[i]);
+     }
+     return res;
+ }
 	
-	
-	
+    
+    
+    
 }
