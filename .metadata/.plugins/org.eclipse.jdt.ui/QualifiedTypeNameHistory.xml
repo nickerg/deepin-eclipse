@@ -16,7 +16,6 @@
 <fullyQualifiedTypeName name="org.omg.CORBA.FREE_MEM"/>
 <fullyQualifiedTypeName name="CLType"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="CBTType"/>
 <fullyQualifiedTypeName name="javax.swing.text.StyledEditorKit.ForegroundAction"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.PRIVATE_MEMBER"/>
@@ -44,4 +43,5 @@
 <fullyQualifiedTypeName name="Solution.ListNode"/>
 <fullyQualifiedTypeName name="javax.management.ListenerNotFoundException"/>
 <fullyQualifiedTypeName name="ListNode"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

@@ -26,7 +26,7 @@ public class Test {
 //		a.next.next.next = new ListNode(4);
 //		solution.swapPairs(a);
 		
-		int[] nums = new int[] {1,5,1};
+		int[] nums = new int[] {5,7,7,8,8,10};
 		// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
 //		int len = solution.removeDuplicates(nums);
 
@@ -36,6 +36,8 @@ public class Test {
 //		    System.out.print(nums[i]+" ");
 //		}
 		
-		solution.nextPermutation(nums);
+//		solution.nextPermutation(nums);
+		
+		solution.searchRange(nums, 8);
 	}
 }

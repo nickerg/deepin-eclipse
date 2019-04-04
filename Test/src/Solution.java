@@ -623,6 +623,72 @@ public class Solution {
         }
         return;
     }
+//	在排序数组中查找元素的第一个和最后一个位置 时间复杂度为O(logn)级别
+//	可以成功，但是报超时
+    public int[] searchRange(int[] nums, int target) {
+    	int[] res = new int[] {-1,-1};
+    	int mid = nums.length/2;
+    	int left = 0;
+    	int right = nums.length-1;
+    	while(left >= 0 && right <= nums.length-1 && left<right) {
+    		if(nums[mid] < target) {
+    			right = mid;
+//    			mid /= 2;
+    			mid += (right-left)/2;
+    		}
+    		else if(nums[mid] > target) {
+    			left = mid;
+//    			mid /= 2;
+    			mid += (right-left)/2;
+    		}else {
+				break;
+			}
+    	}
+    	left = right = mid;
+    	while(left >= 0 && nums[left] == target ) {
+    		left--;
+    	}
+    	res[0] = left+1;
+    	while(right <= nums.length-1 && nums[right] == target) {
+    		right++;
+    	}
+    	res[1] = right-1;
+//    	while(left >=0 && right <= nums.length-1) {
+//    		if(nums[left] != target && nums[right] != target) {
+//    			break;
+//    		}
+//    		if(nums[left] == target);
+//    	}
+    	
+    	
+    	return res;
+    }
+//    成功通过 但是时间复杂度不明白
+    public int[] searchRange1(int[] nums, int target) {
+    	int[] res = new int[] {-1,-1};
+        if(nums.length == 0 || nums == null){
+            return res;
+        }
+    	int mid = nums.length/2;
+    	int left = 0;
+    	int right = nums.length-1;
+    	while(left < right && (nums[left] != target || nums[right] != target)){
+            if(nums[left]<target){
+                left++;
+            }
+            if(nums[right]>target){
+                right--;
+            }
+        }
+        if(nums[left] == target && nums[right] == target){
+            res[0] = left;
+            res[1] = right;    
+        }
+        
+    	return res;
+    }
+	
+	
 	
 	
     
