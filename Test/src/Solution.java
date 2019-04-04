@@ -537,7 +537,35 @@ public class Solution {
 		}
 		return i+1;
 	}
-	
+//	移除元素 在数组中移除所有等val的元素， 采用左右双指针
+//	参考答案是	当左数等val时，直接和最后一个数据交换并递减数组长度（通过变量）
+	public int removeElement(int[] nums, int val) {
+        if(nums.length == 0){
+            return 0;
+        }
+        int i = 0,j = nums.length-1;
+        int count = nums.length;
+        while( i < j){
+            while(i < nums.length && nums[i] != val){
+                i++;
+            }
+            while(j > 0 && nums[j] == val){
+                j--;
+            }
+            if(i < j){
+                int temp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = temp;
+                // count--;
+            }
+        }
+        for(int k = nums.length-1; k >= 0; k--){
+            if(nums[k] == val){
+                count--;
+            }
+        }
+        return count;
+    }
 	
 	
     
