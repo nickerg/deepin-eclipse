@@ -876,5 +876,33 @@ public class Solution {
 //        return res;
     	return "";
     }
-    
+/*
+ * 给定一个非负整数数组，你最初位于数组的第一个位置。
+
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+ */
+    private int findEnd(int[] nums, int end, int[] re) {
+//		if(end <= 0) {
+//			return 0;
+//		}
+		int res = end;
+		re[0]++;	// 次数加1
+		for (int j = end - 1; j >= 0; j--) {
+			if(nums[j] >= (end -j)) {	// 找到一个最小的，可以直接到达末尾的下标。
+				res = j;
+			}
+		} 
+		return res;
+		
+	}
+    public int jump(int[] nums) {
+        int[] res = new int[] {0};	//通过数组传递，每进一次子函数次数加一，
+        int end = nums.length-1;	//尾标
+        while (end > 0) {
+        	end = findEnd(nums, end, res);
+		}
+		return res[0];
+    }
 }
