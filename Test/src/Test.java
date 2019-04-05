@@ -27,6 +27,8 @@ public class Test {
 //		solution.swapPairs(a);
 		
 		int[] nums = new int[] {5,7,7,8,8,10};
+		char [][] a = new char[][] {{1,1},{1,1}};
+		char[][] nums2 = new char[][] {{'5','3','.','.','7','.','.','.','.'},{'6','.','.','1','9','5','.','.','.'},{'.','9','8','.','.','.','.','6','.'},{'8','.','.','.','6','.','.','.','3'},{'4','.','.','8','.','3','.','.','1'},{'7','.','.','.','2','.','.','.','6'},{'.','6','.','.','.','.','2','8','.'},{'.','.','.','4','1','9','.','.','5'},{'.','.','.','.','8','.','.','7','9'}};
 		// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
 //		int len = solution.removeDuplicates(nums);
 
@@ -38,6 +40,9 @@ public class Test {
 		
 //		solution.nextPermutation(nums);
 		
-		solution.searchRange(nums, 8);
+//		solution.searchRange(nums, 8);
+//		System.out.println((int)'0');
+//		System.out.println('0');
+		 solution.isValidSudoku(nums2);
 	}
 }

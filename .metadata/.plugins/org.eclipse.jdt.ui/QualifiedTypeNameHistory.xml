@@ -44,4 +44,5 @@
 <fullyQualifiedTypeName name="javax.management.ListenerNotFoundException"/>
 <fullyQualifiedTypeName name="ListNode"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.ReadWriteLock"/>
 </qualifiedTypeNameHistroy>

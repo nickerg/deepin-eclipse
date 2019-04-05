@@ -687,7 +687,89 @@ public class Solution {
         
     	return res;
     }
-	
+//	搜索插入位置 nums为已经排序好的数组 无二分效率不高
+    public int searchInsert(int[] nums, int target) {
+//    	int i = 0;
+//        for(i = 0; i < nums.length; i++) {
+//        	if(nums[i] >= target) {
+////        		return i;
+//        		break;
+//        	}
+//        }
+//        return i;
+//    	二分未实现
+    	int left = 0,mid=0,right = nums.length-1;
+//    	while(left < right-1) {
+//    		mid = left + (right-left)/2;		//mid取中间值
+//    		if(nums[mid] == target)
+//    			return mid;
+//    		else if(nums[mid] < target) {		//确保left< target right > target
+//    			left = mid;
+//    		}else if(nums[mid] > target) {
+//    			right = mid;
+//    		}
+//    	}
+//    	if(nums[mid] < target && nums[left] > target) {
+//    		return left;
+//    	}
+    	
+//    	while(left < right) {
+//    		if(nums[left+1] < target) {
+//    			left++;
+//    		}
+//    		if(nums[right-1] > target) {
+//    			right--;
+//    		}
+//    		if(nums[left] < target && nums[left+1] > target) {	//
+//    			return left+1;
+//    		}
+//    	}
+    	return nums.length;
+    }
+//   有效的数独
+    public boolean isValidSudoku(char[][] board) {
+        int[] ar = new int[10];
+        for(int i = 0; i < 9; i++) {	//查询行
+        	for(int j = 0; j < 9; j++) {
+        		if(board[i][j] == '.')
+        			continue;
+        		ar[board[i][j]-'0']++;
+        	}
+        	for(int j = 0;j < 10; j++) {	// 确认是否某个数字出现超过两次
+        		if(ar[j] > 1)
+        			return false;
+        		ar[j] = 0;
+        	}
+        }
+        for(int i = 0; i < 9; i++) {	//查询列
+        	for(int j = 0; j < 9; j++) {
+        		if(board[j][i] == '.')
+        			continue;
+        		ar[board[j][i]-'0']++;
+        	}
+        	for(int j = 0;j < 10; j++) {		// 确认是否某个数字出现超过两次
+        		if(ar[j] > 1)
+        			return false;
+        		ar[j] = 0;
+        	}
+        }
+        int k = 0,m = 0;
+        for(int i = 0; i < 9; i++) {	//查询块
+        	for(int j = 0; j < 9; j++) {
+        		k =3*(i/3) + (j%3);	//块的行数
+        		m =3*(i%3) + j/3;	// 块的列数
+        		if(board[k][m] == '.')
+        			continue;
+        		ar[board[k][m]-'0']++;
+        	}
+        	for(int j = 0;j < 10; j++) {		// 确认是否某个数字出现超过两次
+        		if(ar[j] > 1)
+        			return false;
+        		ar[j] = 0;
+        	}
+        }
+        return true;
+    }
 	
 	
 	
