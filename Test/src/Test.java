@@ -43,6 +43,10 @@ public class Test {
 //		solution.searchRange(nums, 8);
 //		System.out.println((int)'0');
 //		System.out.println('0');
-		 solution.isValidSudoku(nums2);
+//		 solution.isValidSudoku(nums2);
+		
+//		System.out.println(solution.countAndSay(7));;
+		
+		
 	}
 }

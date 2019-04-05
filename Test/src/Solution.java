@@ -687,7 +687,7 @@ public class Solution {
         
     	return res;
     }
-//	搜索插入位置 nums为已经排序好的数组 无二分效率不高
+//	搜索插入位置 nums为已经排序好的数组 无二分效率不高 nums中可能已经存在，也可能需要插入
     public int searchInsert(int[] nums, int target) {
 //    	int i = 0;
 //        for(i = 0; i < nums.length; i++) {
@@ -697,34 +697,39 @@ public class Solution {
 //        	}
 //        }
 //        return i;
-//    	二分未实现
+//    	二分未实现		 实现
     	int left = 0,mid=0,right = nums.length-1;
-//    	while(left < right-1) {
-//    		mid = left + (right-left)/2;		//mid取中间值
-//    		if(nums[mid] == target)
-//    			return mid;
-//    		else if(nums[mid] < target) {		//确保left< target right > target
-//    			left = mid;
-//    		}else if(nums[mid] > target) {
-//    			right = mid;
-//    		}
-//    	}
-//    	if(nums[mid] < target && nums[left] > target) {
-//    		return left;
-//    	}
-    	
-//    	while(left < right) {
-//    		if(nums[left+1] < target) {
-//    			left++;
-//    		}
-//    		if(nums[right-1] > target) {
-//    			right--;
-//    		}
-//    		if(nums[left] < target && nums[left+1] > target) {	//
-//    			return left+1;
-//    		}
-//    	}
-    	return nums.length;
+    	switch (nums.length) {	// 对极端情况进行先行判断
+		case 0:			//长度为0,返回0
+			return 0;
+		case 1:			//长度为1 ，直接判断
+			if(nums[0] >= target) {
+				return 0;
+			}else {
+				return 1;
+			}
+		default:		//长度至少为2,判断边界
+			if(nums[0] >= target) {	// 如果target小于第0个数，则需要在第0个数插入。如果等于，则下标为第0个数
+				return 0;
+			}else if(nums[nums.length-1] == target) {	// 如果等于最后一个数，则返回其下标
+				return nums.length-1;
+			}else if(nums[nums.length-1] < target) {	// 说明不在数组中，返回长度
+				return nums.length;
+			}
+		}
+//    	此时，确定target在数组之内 且 数组长度大于1; 只需要判断其在数组内的（插入）位置
+    	while(left < right - 1) {	// 使left和right不相等即跳出循环
+    		mid = left + (right-left)/2;		//mid取中间值	最后的mid等于left
+    		if(nums[mid] == target)
+    			return mid;
+    		else if(nums[mid] < target) {		//确保left< target right > target
+    			left = mid;
+    		}else if(nums[mid] > target) {
+    			right = mid;
+    		}
+    	}
+//    	在最后，mid是等于left的，left和right只能相差1.而未返回，说明left<target，并且right大于target。
+    	return right;
     }
 //   有效的数独
     public boolean isValidSudoku(char[][] board) {
@@ -770,7 +775,29 @@ public class Solution {
         }
         return true;
     }
-	
+//    报数序列
+    public String countAndSay(int n) {
+    	if(n == 1) {
+    		return "1";
+    	}
+        StringBuilder temp = new StringBuilder(countAndSay(n-1));
+        StringBuilder res = new StringBuilder();
+        int count = 0;
+//        int k = 0;
+        for (int i = 0; i < temp.length(); i++) {
+			while(i+count < temp.length() && temp.charAt(i+count) == temp.charAt(i)) {
+				count++;	// 获得在长度范围内时，有多少个当前字符
+			}
+//			for (int j = 0; j < count; j++) {	// 添加count个当前字符
+//				res.append(temp.charAt(i));
+//			}
+			res.append(count);
+			res.append(temp.charAt(i));
+			i += count - 1;	// 跳过重复的字符 。 因为有i++，所以需要-1.
+			count = 0;
+		}
+        return res.toString();
+    }
 	
 	
     
