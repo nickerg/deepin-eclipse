@@ -671,7 +671,7 @@ public class Solution {
         if(nums.length == 0 || nums == null){
             return res;
         }
-    	int mid = nums.length/2;
+//    	int mid = nums.length/2;
     	int left = 0;
     	int right = nums.length-1;
     	while(left < right && (nums[left] != target || nums[right] != target)){
@@ -844,5 +844,37 @@ public class Solution {
         }
         return sum;
     }	
+//    字符串相乘  乘法 低位从0开始 nums1 的j位与 nums2 的i位相乘 ，结果在i+j 及 i+j+1中。个位相乘结果最大为两位
+//    在计算完成后，依次处理进位 未完成
+    public String multiply(String num1, String num2) {
+//        int len1 = num1.length();
+//        int len2 = num2.length();
+//        if(len1 == 0 || len2 == 0) {
+//        	return "";
+//        }
+//        int[] sum = new int[len1 + len2 + 2];
+//        for (int i = 0; i < len1; i++) {
+//        	for (int j = 0; j < len2; j++) {
+//				sum[i + j] += (num1.charAt(i)-'0') * (num2.charAt(i) - '0');	//倒序存放
+//			}
+//		}
+////        先处理进位
+//        int i = sum.length-1,count = 0;
+//        while(i>0 && sum[i] >= 0 ) {	//
+//        	count++;
+//        	sum[i] %= 10;
+//        	sum[i-1] += sum[i]/10;
+//        	i--;
+//        }
+//        if(sum[count] > 0) {	//判断最后一位。有效长度为count
+//        	count++;
+//        }
+//        for (int j = 0; j < count; j++) {
+//			sum[j] += '0';
+//		}
+//        String res = new String(sum, 0, count);
+//        return res;
+    	return "";
+    }
     
 }

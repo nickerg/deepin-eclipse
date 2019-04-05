@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="BreadcrumbItemDropDown">
+	</section>
 	<section name="org.eclipse.debug.ui.sourcelookup.SourceLookupDialog">
 		<item value="525" key="DIALOG_WIDTH"/>
 		<item value="1|Noto Sans CJK SC|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>

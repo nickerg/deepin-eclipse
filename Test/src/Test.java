@@ -47,7 +47,10 @@ public class Test {
 		
 //		System.out.println(solution.countAndSay(7));;
 		
-		solution.trap(nums);
+//		solution.trap(nums);
+		System.out.println(0);
+		System.out.println((char)0);
+		System.out.println((char)(0+'0'));
 		
 	}
 }
