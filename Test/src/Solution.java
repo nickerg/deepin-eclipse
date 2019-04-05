@@ -1,3 +1,5 @@
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 /**
  * Definition for singly-linked list.
@@ -798,7 +800,21 @@ public class Solution {
 		}
         return res.toString();
     }
-	
-	
+//    缺失的第一个正数，数组未排序，要求时间复杂度为O(n)，且使用常数的空间
+    public int firstMissingPositive(int[] nums) {
+        int res = 1;
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for(int i = 0; i < nums.length; i++) {
+        	arr.add(nums[i]);	
+        	while(arr.contains(res)) {	//利用一个arraylist来查询res是否在原nums中。
+        		res++;
+        	}
+        }
+        return res;
+    }
+//    接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+    public int trap(int[] height) {
+        
+    }	
     
 }
