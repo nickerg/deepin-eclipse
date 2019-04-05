@@ -905,4 +905,14 @@ public class Solution {
 		}
 		return res[0];
     }
+//    没有重复数字的全排列
+    public ArrayList<ArrayList<Integer>> permute(int[] nums) {
+    	ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+    	
+    	
+    	return res;
+    }
+
+
+
 }
