@@ -814,7 +814,35 @@ public class Solution {
     }
 //    接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
     public int trap(int[] height) {
-        
+        int sum = 0;
+        int slo = 0, fas = 1;	//定义一个慢指针一个快指针 实际是左右端
+        int min = 0;
+        if(height.length == 0) return 0;
+        while(slo < height.length && height[slo] == 0) {	// 除去开头的空数字
+        	slo++;
+        	fas = slo+1;	// 从左端的右边开始
+        }
+        while(slo < height.length && fas < height.length) {	// 两个指针都在范围内，
+        		int tem = fas;		// 定义一个循环之后数字的变量
+        		int max = height[fas];	// 保存找到剩余高度的最大值
+        		while(tem < height.length && max < height[slo]) {	//当比左边低时，持续寻找，并保存已经找到的最大值。
+        			if(max <= height[tem]) {
+        				max = height[tem];
+        				fas = tem;
+        			}
+        			tem++;
+        		}
+//        		max >= height[slo] 或者tem移动到数组末尾 此时fas中保存下一个最大高度。
+        		min = Math.min(height[fas], height[slo++]);	// 获得两端的最小值 左端从下一个开始计入sum
+        		while(slo<fas){		// 计算可以存储的容积
+        			if(height[slo] - min < 0) {
+        				sum = sum + min - height[slo];
+        			}
+        			slo++;
+        		}	//对找到的进行相加	结束后slo = fas;
+        		fas++;	//使fas从左端的右边开始寻找
+        }
+        return sum;
     }	
     
 }
