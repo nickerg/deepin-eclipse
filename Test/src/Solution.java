@@ -1,6 +1,6 @@
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 /**
  * Definition for singly-linked list.
@@ -926,7 +926,20 @@ public class Solution {
     	}
     	return res;
     }
-
+//    给定一个可包含重复数字的序列，返回所有不重复的全排列。
+//    思路同上。 在加入的时候判断一下是否重复。循环条件依然是返回到本身
+//    由于nextPermutation保证了下一个数组是次大的，一定和当前不一样。所以实际和上述代码相同
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        int self[] = nums.clone();
+        nextPermutation(nums);
+        res.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+        while(!Arrays.equals(self, nums)) {
+        	nextPermutation(nums);
+        	res.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+        }
+        return res;
+    }
 
 
 }
