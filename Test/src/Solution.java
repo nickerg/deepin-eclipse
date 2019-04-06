@@ -1034,4 +1034,80 @@ public class Solution {
     		return false;
     	return true;
     }
+/*
+ * n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
+ * 使用回遡法．通过一个函数来判断根据之前的位置，是否可以添加到当前列．如果可以就判断下一行
+ */
+    /**
+     * 只判断列及斜线，因为算法中保证了每行只添加一个数
+     * @param loc	保存各行皇后位置。1~9
+     * @param row	传入当前行数。只判断当前行之前的皇后要求
+     * @return	符合条件为真，
+     */
+    private boolean hereValid(int[] loc, int row) {
+		for (int i = 0; i < row; i++) {	//　和所有之前行的数进行比较
+			if(loc[row] == loc[i] || Math.abs(loc[row]-loc[i]) == row-i) {		// 判断是否在同一列及同一斜线 斜线包括左上到右下和右下到左上，所以加绝对值
+				return false;
+			}
+		}
+		return true;
+	}
+    /**
+     * 皇后调用函数。 回遡法。
+     * @param n	维度
+     * @param loc	各行皇后位置
+     * @param row	当前行数
+     * @param res	结果的返回。是一个列表。
+     */
+    private void queen(int n, int[] loc, int row,List<List<String>> res) {
+		if(row == n) {	// 说明找到了一个满足条件的。
+//			添加当前ｌｏｃ
+			List<String> list = new ArrayList<>();
+			for (int i = 0; i < n; i++) {
+				char[] temp = new char[n];
+				for (int j = 0; j < n; j++) {
+					if(loc[i] == j+1) {
+						temp[j] = 'Q';
+					}else
+						temp[j] = '.';
+				}
+				list.add(String.valueOf(temp));
+			}
+			res.add(list);
+//			return;
+			
+		}else {
+			for (int i = 0; i < n; i++) {	// 保证了循环完所有列
+				loc[row] = i+1;
+				if(hereValid(loc, row)) {	//先判断，再调用。
+					queen(n, loc, row+1,res);
+				}else
+					loc[row] = 0;
+			}
+		}
+	}
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList<>();
+//        int i = 0;
+        int[] loc = new int[n];
+        queen(n, loc, 0,res);
+//        无法用for循环做。因为无法递归调用，当前行找到一个满足的后，找下一行，在处理完当前行的这个数后，还得继续处理当前行的剩余数。for循环无法接着处理。
+//        for(int i = 0; i < n; i++) {	//遍历第一行中的所有列
+//        	for(int row = 0; row < n; row++) {	//遍历所有行
+//        		for(int col = 0; col < n; col++) {	//遍历每行的所有列
+//        			loc[row] = col+1;
+//        			if(hereValid(loc, row)) {	// 如果有效，跳出循环，
+//        				break;
+//        			}
+//        		}
+//        		if(!hereValid(loc, row)) {	//说明此行没找到合适的列，之后的行也没有必要寻找，跳出这一级的循环．
+//        			loc[row] = 0;		
+//        			break;
+//        		}
+//        	}
+//        	
+//        }
+        return res;
+    }
+    
 }
