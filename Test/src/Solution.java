@@ -845,36 +845,42 @@ public class Solution {
         return sum;
     }	
 //    字符串相乘  乘法 低位从0开始 nums1 的j位与 nums2 的i位相乘 ，结果在i+j 及 i+j+1中。个位相乘结果最大为两位
-//    在计算完成后，依次处理进位 未完成
+//    在计算完成后，依次处理进位 完成
+//    既然 i和j相乘的结果应该在i+j上，那为了防止丢失最高位的进位，就将结果放在i+j+1上。 这样高位或低位从0开始都可以 。高位从0开始则结果顺序排放
     public String multiply(String num1, String num2) {
-//        int len1 = num1.length();
-//        int len2 = num2.length();
-//        if(len1 == 0 || len2 == 0) {
-//        	return "";
-//        }
-//        int[] sum = new int[len1 + len2 + 2];
-//        for (int i = 0; i < len1; i++) {
-//        	for (int j = 0; j < len2; j++) {
-//				sum[i + j] += (num1.charAt(i)-'0') * (num2.charAt(i) - '0');	//倒序存放
-//			}
-//		}
-////        先处理进位
-//        int i = sum.length-1,count = 0;
-//        while(i>0 && sum[i] >= 0 ) {	//
-//        	count++;
-//        	sum[i] %= 10;
-//        	sum[i-1] += sum[i]/10;
-//        	i--;
-//        }
-//        if(sum[count] > 0) {	//判断最后一位。有效长度为count
-//        	count++;
-//        }
-//        for (int j = 0; j < count; j++) {
-//			sum[j] += '0';
-//		}
-//        String res = new String(sum, 0, count);
-//        return res;
-    	return "";
+        int len1 = num1.length();
+        int len2 = num2.length();
+        if(len1 == 0 || len2 == 0) {
+        	return "";
+        }
+        int[] sum = new int[len1 + len2];
+        for (int i = 0; i < len1; i++) {		//此时没有处理进位。所以低位和高位开始循环都可以
+        	for (int j = 0; j < len2; j++) {
+				sum[i + j + 1] += (num1.charAt(i)-'0') * (num2.charAt(j) - '0');	//存放结果统一后移一位
+			}
+		}
+//        先处理进位
+        int i = len1-1 + len2-1 + 1;
+        while(i>0) {	//
+        	sum[i-1] += sum[i]/10;	//如果不先进位，求余的时候会丢失进位
+        	sum[i] %= 10;
+        	i--;
+        }
+//        不会判断int数组为空，就先加'0'，0和空 都变为'0'；然后从开头找'0'去除高位的所有0
+//        int数组初始化后为0
+        for (int j = 0; j < len1+len2; j++) {
+			sum[j] += '0';		// 将int变为char
+		}
+//        去除高位的0
+        int start = 0;
+        while(start < sum.length && sum[start] == '0') {	//不能越界
+        	start++;
+        }
+        if(start >= sum.length) {	// 说明有一个字符串为0
+        	return "0";
+        }
+        String res = new String(sum, start, sum.length-start);
+        return res;
     }
 /*
  * 给定一个非负整数数组，你最初位于数组的第一个位置。

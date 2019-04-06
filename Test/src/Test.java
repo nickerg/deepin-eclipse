@@ -48,9 +48,11 @@ public class Test {
 //		System.out.println(solution.countAndSay(7));;
 		
 //		solution.trap(nums);
-		System.out.println(0);
-		System.out.println((char)0);
-		System.out.println((char)(0+'0'));
+		
+		solution.multiply("123", "456");
+//		System.out.println(0);
+//		System.out.println((char)0);
+//		System.out.println((char)(0+'0'));
 		
 	}
 }
