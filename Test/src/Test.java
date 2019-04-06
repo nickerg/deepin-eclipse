@@ -54,6 +54,10 @@ public class Test {
 //		System.out.println((char)0);
 //		System.out.println((char)(0+'0'));
 //		solution.permute(nums);
-		solution.rotate(nums2);
+//		solution.rotate(nums2);
+		
+//		System.out.println((double)2.2%1);
+		
+		solution.isValid("()[]{}");
 	}
 }
