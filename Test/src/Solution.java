@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 /**
  * Definition for singly-linked list.
@@ -969,5 +971,22 @@ public class Solution {
         }
         return;
     }
-
+//    给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+//    思路：定义一个ｍａｐ映射，对每个ｓｔｒｉｎｇ排序，如果已经在ｋｅｙ中，则添加ｖａｌｕｅ，如果未找到，则新增ｋｅｙ及对应ｖａｌｕｅ
+//    字符串到数组，对数组排序；　添加新ｋｅｙ的时候同时ｎｅｗ一个包含内容的ｌｉｓｔ；通过一个ｌｉｓｔ新建ｌｉｓｔ．
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for(String s : strs) {
+        	char[] so = s.toCharArray();
+        	Arrays.sort(so);
+        	String tem = String.valueOf(so);
+//        	map.containsKey(tem)?(map.get(tem).contains(s)? :map.put(tem, s)):map.put(tem, s);
+        	if(map.containsKey(tem)) {
+//        		if(!map.get(tem).contains(s))	//　题目不要求去重，所以直接添加即可．
+        			map.get(tem).add(s);
+        	}else
+        		map.put(tem, new ArrayList<>(Arrays.asList(s)));
+        }
+        return new ArrayList<>(map.values());
+    }
 }
