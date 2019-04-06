@@ -940,6 +940,34 @@ public class Solution {
         }
         return res;
     }
-
+/*
+ * 给定一个 n × n 的二维矩阵表示一个图像。    
+ * 将图像顺时针旋转 90 度。你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。
+ * 请不要使用另一个矩阵来旋转图像。 
+ * 思路。一个n×n阶乘，需要循环 n/2 次。 n = 3 处理外围1圈。n = 4 处理2圈
+ * 关键是注意下标的处理
+ */
+    public void rotate(int[][] matrix) {
+        int dimension = matrix.length;
+        for(int i = 0; i < dimension/2; i++) {	// 旋转 数组维度/2 次
+        	int[] temp = new int[dimension-2*i];	// 数组长度依次递减2
+        	for(int j = 0; j < temp.length; j++) {	// 保存上方数据
+				temp[j] = matrix[i][i+j];	// i相当于基址。j为偏移。 基址依次递增1 。
+			}
+        	for(int j = 0; j < temp.length; j++) {	//为顺时针旋转，转移左侧数据 确保转移时，被转移的数据从头开始读取
+        		matrix[i][dimension-1-i -j] = matrix[i+j][i];	//纵坐标为基址， 横坐标为基址 且倒序
+        	}
+        	for(int j = 0; j < temp.length; j++) {	//转移下侧数据
+        		matrix[i+j][i] = matrix[dimension-1-i][i+j];	//左从上到下 等于 下从左到右 左列不变，下行不变 
+        	}
+        	for(int j = 0; j < temp.length; j++) {	//转移右侧数据
+        		matrix[dimension-1-i][i+j] = matrix[dimension-1-i -j][dimension-1-i]; // 下从左到右 等于 右 从下到上。基址为length-1-i
+        	}
+        	for(int j = 0; j < temp.length; j++) {	// 在右侧存储原上侧数据
+        		matrix[dimension-1-i -j][dimension-1-i] = temp[temp.length-1-j];	//右从上到下 等于 上从左到右
+        	}
+        }
+        return;
+    }
 
 }
