@@ -1,6 +1,7 @@
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -912,10 +913,17 @@ public class Solution {
 		return res[0];
     }
 //    没有重复数字的全排列
-    public ArrayList<ArrayList<Integer>> permute(int[] nums) {
-    	ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-    	
-    	
+//    对于一个已经排好序的数组，相当于找下一个次大的排列。
+//    注意int[] 转list 及 比较两个数组的内容应该调用Arrays类的方法
+    public java.util.List<java.util.List<Integer>> permute(int[] nums) {
+    	java.util.List<java.util.List<Integer>> res = new ArrayList<>();
+    	int[] end = nums.clone();
+    	nextPermutation(nums);	//先执行一次 后面根据重复来跳出循环，所以先执行一次
+    	res.add(Arrays.stream(nums).boxed().collect(Collectors.toList())); //将执行完后的进行装入。可能是原list，或下一个list
+    	while(!Arrays.equals(end, nums)) {	// 不能直接用end.equals。 因为其比较的是地址。Arrays比较的是两个数组的内容
+    		nextPermutation(nums);	
+    		res.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));	// int[] 转list 
+    	}
     	return res;
     }
 
