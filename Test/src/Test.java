@@ -59,6 +59,8 @@ public class Test {
 //		System.out.println((double)2.2%1);
 		
 //		solution.isValid("()[]{}");
-		System.out.println(solution.solveNQueens(8).size());
+//		System.out.println(solution.solveNQueens(8).size());
+		
+		solution.generateMatrix(3);
 	}
 }

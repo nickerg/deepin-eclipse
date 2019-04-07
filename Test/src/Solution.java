@@ -1301,7 +1301,36 @@ public class Solution {
         }
         return res;
     }
-    
+/*
+ * 螺旋矩阵II
+ * 给定一个正整数 n，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
+// * 思路是循环添加n^2次。关键是如何处理转向。
+ * 需要循环(n+1)/2次。且判断下和左不能和上和右重复
+ * 直接利用之前螺旋矩阵遍历的方法
+ */
+    public int[][] generateMatrix(int n) {
+        int num = 0;
+        int[][] res = new int[n][n];
+        for(int i = 0; i < (n+1)/2; i++) {
+        	for(int j = i; j <= n-1 -i; j++) {	// 上 循环列	
+        		res[i][j] = ++num;// i行j列
+        	}
+        	for(int j = i+1; j< n-1 -i; j++) { 		//右	循环行	少打印上下
+        		res[j][n-1 -i] = ++num;	// j行n-1-i列
+        	}
+        	if (n-1-i > i) {	// 如果行重复，就不再打印
+				for (int j = n - 1 - i; j >= i; j--) { //下		循环列
+					res[n - 1 - i][j] = ++num; //	n-1-i行j列
+				} 
+			}
+			if (i < n-1-i) {	//如果列重复，就不再打印
+				for (int j = n - 1 - i - 1; j > i; j--) { //左 循环行	除去上下两个数
+					res[j][i] = ++num;
+				} 
+			}
+        }
+        return res;
+    }
     
     
     
