@@ -1223,37 +1223,37 @@ public class Solution {
            Interval() { start = 0; end = 0; }
            Interval(int s, int e) { start = s; end = e; }
         }
+    /*
+     * 循环所有的元素。先将当前元素的始末放入min和max变量。如果其余有重合的，就先更新min和max值，然后删除
+     * 轮循完其余元素后，如果min和max变化，说明有重合，添加新元素并删除当前元素。
+     */
     public List<Interval> merge(List<Interval> intervals) {
-        
-    	boolean label = true;
-    	while (label) {
-    		label = false;
-			for (int i = 0; i < intervals.size(); i++) {
-				for (int j = 0; j < intervals.size(); j++) {
-					if (i == j) {
-						continue;
-					}
-					int as = intervals.get(i).start, ae = intervals.get(i).end;
-					int bs = intervals.get(j).start, be = intervals.get(j).end;
-					if (as >= bs && as <= be || ae >= bs && ae <= be) { //i 和 j 重合
-						intervals.add(new Interval(Math.min(as, bs), Math.max(ae, be)));
-						if(i < j) {
-							intervals.remove(j);	// 删除后，排序会变化
-							intervals.remove(i);
-						}else {
-							intervals.remove(i);
-							intervals.remove(j);
-						}
-						label = true;
-						break;
-					} 
+		for (int i = 0; i < intervals.size(); i++) {
+			int as = intervals.get(i).start, ae = intervals.get(i).end;
+			int min = as,max = ae;
+			for (int j = 0; j < intervals.size(); j++) {
+				if (i == j) {
+					continue;
 				}
-				if(label == true) {
-					break;
-				}
-			} 
+				int bs = intervals.get(j).start, be = intervals.get(j).end;
+//                System.out.println(as+" "+ae+"\t"+bs+" "+be+"\t"+min+" "+max);
+				if (min >= bs && min <= be || max >= bs && max <= be || bs >= min && bs <=max || be >= min && be <= max) { //i 和 j 重合
+					min = Math.min(min, bs);	// 保存最大值和最小值
+					max = Math.max(max, be);
+					intervals.remove(j);	// 移除当前j
+//                    System.out.println("removed "+j+"\t"+min+" "+max);
+					j--;	// 下轮需重新判断当前元素
+
+				} 
+			}
+			if (as != min || ae != max) {
+				intervals.remove(i);
+				intervals.add(i, new Interval(min, max));
+//                System.out.println("added "+i);
+				i--;	// 添加后，当前元素已经改变，需要重新判断
+			}
 		}
-    	return intervals;
+		return intervals;
     	
     }
     
