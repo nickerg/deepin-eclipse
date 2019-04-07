@@ -1,3 +1,4 @@
+import java.awt.Label;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1207,7 +1208,54 @@ public class Solution {
         if(right != 0) return false;	//当整个循环结束时，right没有到达0,说明不可抵达
         return true;
     }
-    
+    /**
+     * Definition for an interval.
+     * public class Interval {
+     *     int start;
+     *     int end;
+     *     Interval() { start = 0; end = 0; }
+     *     Interval(int s, int e) { start = s; end = e; }
+     * }
+     */
+    private class Interval {
+           int start;
+           int end;
+           Interval() { start = 0; end = 0; }
+           Interval(int s, int e) { start = s; end = e; }
+        }
+    public List<Interval> merge(List<Interval> intervals) {
+        
+    	boolean label = true;
+    	while (label) {
+    		label = false;
+			for (int i = 0; i < intervals.size(); i++) {
+				for (int j = 0; j < intervals.size(); j++) {
+					if (i == j) {
+						continue;
+					}
+					int as = intervals.get(i).start, ae = intervals.get(i).end;
+					int bs = intervals.get(j).start, be = intervals.get(j).end;
+					if (as >= bs && as <= be || ae >= bs && ae <= be) { //i 和 j 重合
+						intervals.add(new Interval(Math.min(as, bs), Math.max(ae, be)));
+						if(i < j) {
+							intervals.remove(j);	// 删除后，排序会变化
+							intervals.remove(i);
+						}else {
+							intervals.remove(i);
+							intervals.remove(j);
+						}
+						label = true;
+						break;
+					} 
+				}
+				if(label == true) {
+					break;
+				}
+			} 
+		}
+    	return intervals;
+    	
+    }
     
     
     
