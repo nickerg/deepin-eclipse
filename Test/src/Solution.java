@@ -1331,7 +1331,27 @@ public class Solution {
         }
         return res;
     }
-    
+/*
+ * 第k个排列
+ * 给定 n 和 k，返回第 k 个排列。
+ * int数组转string还是麻烦
+ */
+    public String getPermutation(int n, int k) {
+        int[] res = new int[n];
+        for (int i = 0; i < res.length; i++) {	//赋值
+			res[i] = i+1;
+		}
+        while(k > 1) {	// 从1开始计数。
+        	nextPermutation(res);
+        	k--;
+        }
+        StringBuilder sBuilder = new StringBuilder();
+        for (int i = 0; i < res.length; i++) {
+			sBuilder.append(res[i]);
+		}
+        return sBuilder.toString();
+        
+    }
     
     
     
