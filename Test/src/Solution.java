@@ -1254,9 +1254,36 @@ public class Solution {
 			}
 		}
 		return intervals;
-    	
     }
-    
+/*
+ * 插入区间
+ * 给出一个无重叠的 ，按照区间起始端点排序的区间列表。
+ * 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。
+ * 思路：按照起始端点排序，所以是插入在第一个开头大于end之前。原来的数组不重合，所以只需要考虑new和其的重合即可
+ * 给定一个新序列，如果不重合，直接添加。如果重合，重新计算start和end值。碰到第一个开头大于end的值插入new。如果到循环结束都末插入，说明应该在最后添加
+ */
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        List<Interval> res = new ArrayList<>();
+        int start = newInterval.start, end = newInterval.end;
+        int ins = 0;	// 用来使在序列中只插入一次new值
+        for(int i = 0; i < intervals.size(); i++) {
+        	int as = intervals.get(i).start, ae = intervals.get(i).end;
+        	if(as > end && ins < 1) {	// 用来插入序列，且只插入一次
+        		ins++;
+        		res.add(new Interval(start,end));	// 如果碰到了大于的，说明重合的已经处理完毕。在当前res末尾插入即可
+        	}
+        	if(as > end || ae < start) {	//如果开头大于插入的结尾 或者 结尾小于插入的开头，则肯定不重合
+        		res.add(intervals.get(i));
+        	}else {
+	        	start = Math.min(start, as);	// 获得边界
+	        	end = Math.max(end, ae);
+        	}
+        }
+        if (ins < 1) {
+			res.add(new Interval(start, end));	// 如果在循环中未插入。则此时在末尾插入
+		}
+		return res;
+    }    
     
     
     
