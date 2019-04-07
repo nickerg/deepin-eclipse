@@ -1109,5 +1109,58 @@ public class Solution {
 //        }
         return res;
     }
+/*
+ * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+ *  [-2,1,-3,4,-1,2,1,-5,4],	[4,-1,2,1] 
+ *  思路，找每个下标开始的数组，如果下一个数之和大于当前max就使对应right变化，直到数组结束
+ *  定义一个和(sum)保存到当前为止的和。如果小于0(如果是目前为止最大数，已经在上次循环的时候保存),则需要重新开始最长序列。
+ *  如果大于0,说明最长序列可以继续右扩。
+ *  每次循环都更新一次最大值
+ */
+    public int maxSubArray(int[] nums) {
+//        int leftMax = 0,rightMax = nums.length-1;
+//        if(nums.length == 1)
+//        	return nums[0];
+//        int max_all = nums[0];
+//        for(int i = 0; i < nums.length; i++) {
+//        	int left = i,right = i,max = nums[i],temp = nums[i];
+//        	for(int j = i+1; j < nums.length; j++) {
+//        		temp += nums[j];
+//        		if(temp >= max) {
+//        			right = j;	//	保存此时下标
+//        			max = temp;	//	更新最大值
+//        		}
+//        	}
+//        	if(max >= max_all) {	//如果当前下标开始的最大和大于之前的，进行更新
+//        		leftMax = left;
+//        		rightMax = right;
+//        		max_all = max;
+//        	}
+//        }
+    	int sum = nums[0];
+    	int max_all = nums[0];
+    	for(int i = 1; i < nums.length; i++) {
+    		if(sum < 0) {	// 当sum小于0且小于当前值时，从当前值开始记 
+    			sum = nums[i];
+    		}else
+    			sum = sum + nums[i];
+    		max_all = Math.max(sum, max_all);
+    	}
+        return max_all;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
