@@ -1284,7 +1284,23 @@ public class Solution {
 		}
 		return res;
     }    
-    
+/*
+ * 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。
+ * 如果不存在最后一个单词，请返回 0 。
+ * while 循环不能偷懒直接 len--
+ */
+    public int lengthOfLastWord(String s) {
+        if(s == null || s.equals("")) return 0;
+        int res = 0;
+        int len = s.length()-1;
+        while(len >= 0 && s.charAt(len) == ' ') {	// 先去除末尾的空格
+        	len--;
+        }
+        while(len >= 0 && s.charAt(len--) != ' ') {	// 找字符数
+        	res++;
+        }
+        return res;
+    }
     
     
     
