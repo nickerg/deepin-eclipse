@@ -1148,7 +1148,65 @@ public class Solution {
     	}
         return max_all;
     }
-    
+/*
+ * 螺旋矩阵
+ * 给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。
+ */
+    public List<Integer> spiralOrder(int[][] matrix) {
+    	List<Integer> res = new ArrayList<>();
+    	if(matrix.length == 0) return res;
+        int m = matrix.length,n = matrix[0].length;
+        for(int i = 0; i < (Math.min(m,n)+1)/2; i++) {	// 循环多少圈
+        	for(int j = i; j <= n-1 -i; j++) {	// 上 循环列	
+        		res.add(matrix[i][j]);		// i行j列
+        	}
+        	for(int j = i+1; j< m-1 -i; j++) { 		//右	循环行	少打印上下
+        		res.add(matrix[j][n-1 -i]);	// j行n-1-i列
+        	}
+        	if (m-1-i > i) {	// 如果行重复，就不再打印
+				for (int j = n - 1 - i; j >= i; j--) { //下		循环列
+					res.add(matrix[m - 1 - i][j]); //	m-1-i行j列
+				} 
+			}
+			if (i < n-1-i) {	//如果列重复，就不再打印
+				for (int j = m - 1 - i - 1; j > i; j--) { //左 循环行	除去上下两个数
+					res.add(matrix[j][i]);
+				} 
+			}
+        }
+        return res;
+    }
+/*
+ * 跳跃游戏 类似于之前的最短跳跃问题
+ * 给定一个非负整数数组，你最初位于数组的第一个位置。
+ * 数组中的每个元素代表你在该位置可以跳跃的最大长度。
+ * 判断你是否能够到达最后一个位置。
+ */
+    public boolean canJump(int[] nums) {
+        int right = nums.length-1;
+//        int left = right;
+        int i = right;
+//        while(left > 0) {
+//        	if(nums[i] >= right-i) {
+//        		left = i;
+//        	}	
+//        	if(i == 0) {	// 当前right位置循环结束
+//        		if(right == left) {	// 当一次结束时，right仍然等于left，则说明没有找到可以跳转的下标，返回假
+//        			return false;
+//        		}
+//        		right = left;
+//        		i = right;
+//        	}
+//        	i--;
+//        }
+        while(i >= 0) {
+        	if(nums[i] >= right -i) {	//如果当前下标可以跳转到right，就更新right的值
+        		right = i;
+        	}
+        }
+        if(right != 0) return false;	//当整个循环结束时，right没有到达0,说明不可抵达
+        return true;
+    }
     
     
     
